@@ -2,7 +2,7 @@
 ClassProjectRepo
 
 ## From micro_g2
-- Preprocessing FASTQ files and assembling raw short-read sequencing data.
+Project description: Preprocessing FASTQ files and assembling raw short-read sequencing data.
 
 ### 1. To perform adapter trimming and quality filtering using [fastp](https://doi.org/10.1093/bioinformatics/bty560)
 The code is located in the following path: `micro_g2/`.
