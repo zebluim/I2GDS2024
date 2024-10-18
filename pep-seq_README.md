@@ -1,2 +1,2 @@
-# Downlod genome packages from NCBI using NCBI-CLI
+## Download genome packages from NCBI using NCBI-CLI
 
