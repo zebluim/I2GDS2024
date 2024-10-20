@@ -1,4 +1,4 @@
-## From micro_g2
+## micro_g2
 Project description: Preprocessing FASTQ files and assembling raw short-read sequencing data.
 
 ### 1. To perform adapter trimming and quality filtering using [fastp](https://doi.org/10.1093/bioinformatics/bty560)
