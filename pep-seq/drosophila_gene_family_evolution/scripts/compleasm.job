@@ -1,0 +1,24 @@
+#!/bin/bash
+#SBATCH --time=72:00:00   # walltime
+#SBATCH --ntasks=3   # number of processor cores (i.e. tasks)
+#SBATCH --nodes=1   # number of nodes
+#SBATCH --mem-per-cpu=15GB   # memory per CPU core
+#SBATCH --account=introtogds
+#SBATCH -J "Arry_compleasm.job"   # job name
+#SBATCH --array=1-46%7 #adjust this to the number of the genomes that you have
+#SBATCH --mail-user=   # email address
+#SBATCH --mail-type=END
+#SBATCH --mail-type=FAIL
+
+
+#path to the mt_download
+mb=/path/to/mb_downloads
+
+# Get the genome path from the genome_list.txt file
+genome=$(sed -n "${SLURM_ARRAY_TASK_ID}p" genomePath_list.txt)
+
+# Extract the base name of the genome file without the extension
+genome_name=$(basename "$genome" .fa)
+
+conda activate compleasm
+compleasm run -a "$genome" -o "compleasmResult_${genome_name}" -l insecta_odb10 -L ${mb}
