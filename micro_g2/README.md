@@ -15,7 +15,7 @@ The code is located in the following path: `code/`.
   - **Input**: FASTQ files (either single-end or paired-end)
     - for single-end data, specify read1 input by `-i` or `--in1`, and specify read1 output by `-o` or `--out1`.
     - for paired-end data, specify read2 input by `-I` or `--in2`, and specify read2 output by `-O` or `--out2`.
-    - `fastp.py` in this repository is written for single-end data, need to modify if your data is paired-end
+    - `fastp.py` in `code/` is written for single-end data, need to modify if your data is paired-end
   - **Expected output**: `_QC.fastq.gz` gzip-compressed file
   - Run the following to execute the code.
     
