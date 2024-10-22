@@ -1,18 +1,22 @@
 # RNA-Seq-Pipeline
 A basic pipeline for RNA-Seq data.
 
+![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
+
 
 Basic pipeline:
 raw reads (paired end) --> FastQC --> Trimmomatic --> STAR --> FeatureCounts --> DeSeq2 
 
-![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
-
-
 **FastQC**
 
 Installation via module load:
+<WIP>
 
 Installation on the cluster:
+<WIP>
+
+<details>
+<summary>FASTQC slurm job </summary>
 
 ```
 #!/bin/bash
@@ -30,6 +34,7 @@ cd /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/trimmedreads/trim
 #run fastqc
 /home/amichael19/software/FastQC92424/FastQC/fastqc *.fq.gz -o /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/QualityControl/fastqc/trimmomatic
 ```
+</details>
 
 **Trimmomatic**
 
@@ -42,7 +47,11 @@ java -jar Trimmomatic-0.39/trimmomatic-0.39.jar
 
 ```
 Installation on cluster:
+<WIP>
 
+<details>
+<summary>Trimmomatic slurm job </summary>
+  
 ```
 #!/bin/bash
 #SBATCH --job-name=trimmomatic_trim
@@ -115,6 +124,7 @@ done
 
 echo "All files have been processed and saved in $trim_folder."
 ```
+</details>
 
 **STAR**
 
@@ -124,7 +134,10 @@ wget https://github.com/alexdobin/STAR/archive/2.7.11b.tar.gz
 tar -xzf 2.7.11b.tar.gz
 cd STAR-2.7.11b
 ```
-Genome Indexing:
+
+<details>
+<summary>STAR Genome Indexing slurm job </summary>
+
 ```
 #!/bin/bash
 # STAR Genome Indexing
@@ -164,7 +177,11 @@ time
 
 exit;
 ```
-Readmapping:
+</details>
+
+<details>
+<summary>STAR Read Alignment slurm job </summary>
+  
 ```
 #!/bin/bash
 # STAR Read Mapping - D3
@@ -206,16 +223,21 @@ time
 
 exit;
 ```
+</details>
 
 **FeatureCounts**
 
 Installation via conda:
+```
 module load Miniconda3
 conda create -n subread -c bioconda subread
 source activate subread
-#test featurecounts
 featureCounts
-#create bash script for batch running feature counts -- see example below
+```
+
+<details>
+<summary>Feature Counts slurm job</summary>
+  
 ```
 #!/bin/bash
 # Featurecounts
@@ -244,7 +266,7 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/bams/rawbam/D7/D7raw_Aligned.sortedByCoord.out.bam \
 /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/bams/rawbam/D10/D10raw_Aligned.sortedByCoord.out.bam
 ```
-
+</details>
 **DeSeq2**
 
 Installation on R/Rstudio:
