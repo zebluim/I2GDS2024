@@ -9,13 +9,13 @@ Scoring rubrics:
 
 1. Clarity and Organization (5 points): score:  
 
-5 points: Wiki is logically structured, well-organized with clear headings, subheadings, and navigation. All content is easy to find. 
+   - 5 points: Wiki is logically structured, well-organized with clear headings, subheadings, and navigation. All content is easy to find. 
 
-3-4 points: Some organization present, but a few sections are unclear or out of order. 
+   - 3-4 points: Some organization present, but a few sections are unclear or out of order. 
 
-1-2 points: Lacks structure; hard to follow or find information. 
+   - 1-2 points: Lacks structure; hard to follow or find information. 
 
-0 points: No clear organization, headings, or navigation. 
+   - 0 points: No clear organization, headings, or navigation. 
 
 2. Comprehensive Coverage of the Pipeline (5 points): score:  
 
