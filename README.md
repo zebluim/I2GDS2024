@@ -19,30 +19,30 @@ Scoring rubrics:
 
 2. Comprehensive Coverage of the Pipeline (5 points): score:  
 
-5 points: Includes all critical aspects of the pipeline, such as installation, setup, each component’s function, input/output details, and example runs. 
+   - 5 points: Includes all critical aspects of the pipeline, such as installation, setup, each component’s function, input/output details, and example runs. 
 
-3-4 points: Covers most aspects but misses some key components or lacks depth in explanation. 
+   - 3-4 points: Covers most aspects but misses some key components or lacks depth in explanation. 
 
-1-2 points: Provides minimal information; major gaps in coverage. 
+   - 1-2 points: Provides minimal information; major gaps in coverage. 
 
-0 points: Fails to describe the key elements of the pipeline. 
+   - 0 points: Fails to describe the key elements of the pipeline. 
 
 3. Accuracy and Technical Detail (5 points): score:  
 
-5 points: All technical content is correct; commands, parameters, and instructions are precise and functional. 
+   - 5 points: All technical content is correct; commands, parameters, and instructions are precise and functional. 
 
-3-4 points: Minor inaccuracies or unclear steps that could confuse the user. 
+   - 3-4 points: Minor inaccuracies or unclear steps that could confuse the user. 
 
-1-2 points: Significant technical errors or missing steps that would prevent the pipeline from being used properly. 
+   - 1-2 points: Significant technical errors or missing steps that would prevent the pipeline from being used properly. 
 
-0 points: Incorrect or absent technical information. 
+   - 0 points: Incorrect or absent technical information. 
 
 4. Visuals and Examples (5 points): score: 
 
-5 points: Clear and relevant visuals (e.g., diagrams, flowcharts) and code examples that illustrate key points. Text is easy to read, with proper use of formatting (bold, italics, code blocks) to enhance understanding. 
+   - 5 points: Clear and relevant visuals (e.g., diagrams, flowcharts) and code examples that illustrate key points. Text is easy to read, with proper use of formatting (bold, italics, code blocks) to enhance understanding. 
 
-3-4 points: Some visuals or examples, but they are limited or not well-integrated into the explanation. Some formatting, but the presentation could be clearer or more consistent. 
+   - 3-4 points: Some visuals or examples, but they are limited or not well-integrated into the explanation. Some formatting, but the presentation could be clearer or more consistent. 
 
-1-2 point: Very few visuals or examples; not helpful to the understanding of the pipeline. Some formatting, but the presentation could be clearer or more consistent. 
+   - 1-2 point: Very few visuals or examples; not helpful to the understanding of the pipeline. Some formatting, but the presentation could be clearer or more consistent. 
 
-0 points: No visuals or examples included. Poor formatting that makes the wiki difficult to read. 
+   - 0 points: No visuals or examples included. Poor formatting that makes the wiki difficult to read. 
