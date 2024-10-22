@@ -7,7 +7,7 @@ Scoring rubrics:
 
 0. Overriding score 20 if the steps can be “copy & paste” to ARC and complete the whole pipeline and reproduce the entire pipeline to get intended output. Your answer: (Yes/No) 
 
-1. Clarity and Organization (5 points): score:  
+1. Clarity and Organization (5 points): 
 
    - 5 points: Wiki is logically structured, well-organized with clear headings, subheadings, and navigation. All content is easy to find. 
 
@@ -17,7 +17,7 @@ Scoring rubrics:
 
    - 0 points: No clear organization, headings, or navigation. 
 
-2. Comprehensive Coverage of the Pipeline (5 points): score:  
+2. Comprehensive Coverage of the Pipeline (5 points): 
 
    - 5 points: Includes all critical aspects of the pipeline, such as installation, setup, each component’s function, input/output details, and example runs. 
 
@@ -27,7 +27,7 @@ Scoring rubrics:
 
    - 0 points: Fails to describe the key elements of the pipeline. 
 
-3. Accuracy and Technical Detail (5 points): score:  
+3. Accuracy and Technical Detail (5 points): 
 
    - 5 points: All technical content is correct; commands, parameters, and instructions are precise and functional. 
 
@@ -37,7 +37,7 @@ Scoring rubrics:
 
    - 0 points: Incorrect or absent technical information. 
 
-4. Visuals and Examples (5 points): score: 
+4. Visuals and Examples (5 points): 
 
    - 5 points: Clear and relevant visuals (e.g., diagrams, flowcharts) and code examples that illustrate key points. Text is easy to read, with proper use of formatting (bold, italics, code blocks) to enhance understanding. 
 
