@@ -6,5 +6,12 @@ The code is located in the following path: `code/`.
 - `fastp.py` : Python script to handle raw FASTQ data and run fastp for adapter identification and quality control.
   - This script will look for the files in the specified directory, automatically identify adapters, trim adapters, and run QC.
   - Need to download `fastp` at the [GitHub](https://github.com/OpenGene/fastp)
-  - Need to specify the path to locate `fastp` and change the input and output directories before use.
-  - Run `python3 fastp.py` to execute the code.
+    ```
+    wget http://opengene.org/fastp/fastp
+    chmod a+x ./fastp
+    ```
+  - Need to specify the path to locate `fastp` and change the input and output directories in `fastp.py` before use.
+  - Run the following to execute the code.
+    ```
+    python3 fastp.py
+    ```
