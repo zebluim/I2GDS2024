@@ -1,19 +1,34 @@
-# RNA-Seq-Pipeline
-A basic pipeline for RNA-Seq data.
+# RNA-Seq-Pipeline (Jaret & Lili)
 
 ![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
 
+This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies heavily on FASTQC, Trimmomatic, STAR, and Featurecounts. For installation instructions see below... (add more?)  
+!!To download files see RNA_G2!!
 
-Basic pipeline:
-raw reads (paired end) --> FastQC --> Trimmomatic --> STAR --> FeatureCounts --> DeSeq2 
-
-**FastQC**
+## FastQC
+<Blurb about fastqc>
+<need to doublecheck the installation code>
 
 Installation via module load:
-<WIP>
+```
+module load FastQC
+```
 
 Installation on the cluster:
-<WIP>
+```
+wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip
+unzip fastqc_v0.12.1
+export PATH:$PATH/to/fastqc
+source ~/.bashrc
+fastqc --version 
+```
+
+Running FastQC:
+
+```
+cd /path/to/reads
+fastqc *.fq.gz
+```
 
 <details>
 <summary>FASTQC slurm job </summary>
@@ -36,18 +51,29 @@ cd /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/trimmedreads/trim
 ```
 </details>
 
-**Trimmomatic**
-
+## Trimmomatic
+<Blurb about trimmomatic>
+<need to doublecheck the installation code>
+  
 Installation via module load:
+```
+module load Trimmomatic
+java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar
+```
+
+Installation on cluster:
 
 ```
 wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
 unzip Trimmomatic-0.39.zip
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar 
-
 ```
-Installation on cluster:
-<WIP>
+
+Trimming:
+```
+java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
+ ....add the rest
+```
 
 <details>
 <summary>Trimmomatic slurm job </summary>
@@ -126,7 +152,9 @@ echo "All files have been processed and saved in $trim_folder."
 ```
 </details>
 
-**STAR**
+## STAR
+<Blurb about STAR>
+<need to check installation instructions>
 
 Installation via module load:
 ```
@@ -225,7 +253,9 @@ exit;
 ```
 </details>
 
-**FeatureCounts**
+## FeatureCounts
+<Blurb about Featurecounts>
+<need to check installation instructions>
 
 Installation via conda:
 ```
@@ -233,6 +263,11 @@ module load Miniconda3
 conda create -n subread -c bioconda subread
 source activate subread
 featureCounts
+```
+
+Running Feature counts:
+```
+featureCounts -p ....
 ```
 
 <details>
@@ -267,9 +302,6 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/bams/rawbam/D10/D10raw_Aligned.sortedByCoord.out.bam
 ```
 </details>
-**DeSeq2**
-
-Installation on R/Rstudio:
 
 
 
