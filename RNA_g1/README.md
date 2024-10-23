@@ -157,11 +157,13 @@ echo "All files have been processed and saved in $trim_folder."
 <Blurb about STAR>
 <need to check installation instructions>
 
-Installation via module load:
+Installation via download:
 ```bash
 wget https://github.com/alexdobin/STAR/archive/2.7.11b.tar.gz
 tar -xzf 2.7.11b.tar.gz
 cd STAR-2.7.11b
+cd STAR/source
+make STAR
 ```
 
 <details>
