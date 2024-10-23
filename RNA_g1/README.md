@@ -2,18 +2,13 @@
 
 ![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
 
-This page is a work in progress!
-This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies heavily on FASTQC, Trimmomatic, STAR, and Featurecounts. For installation instructions see below... (add more?)  
-!!To download files see RNA_G2!!
-
 <a name="top"></a>
 
-## Table of contents
-1. FastQC
-2. Trimmomatic
-3. STAR
-4. FeatureCounts
-5. Slurm Job Examples 
+## Introduction
+
+This page is a work in progress!
+This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies heavily on FASTQC, Trimmomatic, STAR, and Featurecounts. For installation instructions see below... (add more?)  
+!!To download files see RNA_G2!! 
 
 ## FastQC
 <Blurb about fastqc>
