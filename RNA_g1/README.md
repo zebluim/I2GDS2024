@@ -6,6 +6,15 @@ This page is a work in progress!
 This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies heavily on FASTQC, Trimmomatic, STAR, and Featurecounts. For installation instructions see below... (add more?)  
 !!To download files see RNA_G2!!
 
+<a name="top"></a>
+
+## Table of contents
+1. FastQC
+2. Trimmomatic
+3. STAR
+4. FeatureCounts
+5. Slurm Job Examples 
+
 ## FastQC
 <Blurb about fastqc>
 <need to doublecheck the installation code>
@@ -31,27 +40,6 @@ cd /path/to/reads
 fastqc *.fq.gz
 ```
 
-<details>
-<summary>FASTQC slurm job </summary>
-
-```bash
-#!/bin/bash
-# Mass FastQC
-#SBATCH --job-name=Batch_FastQC
-#SBATCH --cpus-per-task=6
-#SBATCH -A <allocation>
-#SBATCH --time=24:00:00
-#SBATCH --mail-type=ALL
-#SBATCH --mail-user=<user>
-
-#Move into directory w reads
-cd /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/trimmedreads/trimmomatic/PEtrim
-
-#run fastqc
-/home/amichael19/software/FastQC92424/FastQC/fastqc *.fq.gz -o /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/QualityControl/fastqc/trimmomatic
-```
-</details>
-
 ## Trimmomatic
 <Blurb about trimmomatic>
 <need to doublecheck the installation code>
@@ -75,6 +63,64 @@ Trimming:
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
  ....add the rest
 ```
+
+
+
+## STAR
+<Blurb about STAR>
+<need to check installation instructions>
+
+Installation via download:
+```bash
+wget https://github.com/alexdobin/STAR/archive/2.7.11b.tar.gz
+tar -xzf 2.7.11b.tar.gz
+cd STAR-2.7.11b
+cd STAR/source
+make STAR
+```
+
+
+## FeatureCounts
+<Blurb about Featurecounts>
+<need to check installation instructions>
+
+Installation via conda:
+```bash
+module load Miniconda3
+conda create -n subread -c bioconda subread
+source activate subread
+featureCounts
+```
+
+Running Feature counts:
+```bash
+featureCounts -p ....
+```
+
+
+
+## Slurm job Examples
+
+<details>
+<summary>FASTQC slurm job </summary>
+
+```bash
+#!/bin/bash
+# Mass FastQC
+#SBATCH --job-name=Batch_FastQC
+#SBATCH --cpus-per-task=6
+#SBATCH -A <allocation>
+#SBATCH --time=24:00:00
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=<user>
+
+#Move into directory w reads
+cd /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/trimmedreads/trimmomatic/PEtrim
+
+#run fastqc
+/home/amichael19/software/FastQC92424/FastQC/fastqc *.fq.gz -o /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/QualityControl/fastqc/trimmomatic
+```
+</details>
 
 <details>
 <summary>Trimmomatic slurm job </summary>
@@ -153,19 +199,6 @@ echo "All files have been processed and saved in $trim_folder."
 ```
 </details>
 
-## STAR
-<Blurb about STAR>
-<need to check installation instructions>
-
-Installation via download:
-```bash
-wget https://github.com/alexdobin/STAR/archive/2.7.11b.tar.gz
-tar -xzf 2.7.11b.tar.gz
-cd STAR-2.7.11b
-cd STAR/source
-make STAR
-```
-
 <details>
 <summary>STAR Genome Indexing slurm job </summary>
 
@@ -209,6 +242,7 @@ time
 exit;
 ```
 </details>
+
 
 <details>
 <summary>STAR Read Alignment slurm job </summary>
@@ -256,23 +290,6 @@ exit;
 ```
 </details>
 
-## FeatureCounts
-<Blurb about Featurecounts>
-<need to check installation instructions>
-
-Installation via conda:
-```bash
-module load Miniconda3
-conda create -n subread -c bioconda subread
-source activate subread
-featureCounts
-```
-
-Running Feature counts:
-```bash
-featureCounts -p ....
-```
-
 <details>
 <summary>Feature Counts slurm job</summary>
   
@@ -307,3 +324,5 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 </details>
 
 ## References
+
+[Back to top](#top)
