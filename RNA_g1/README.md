@@ -2,6 +2,7 @@
 
 ![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
 
+This page is a work in progress!
 This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies heavily on FASTQC, Trimmomatic, STAR, and Featurecounts. For installation instructions see below... (add more?)  
 !!To download files see RNA_G2!!
 
@@ -10,12 +11,12 @@ This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies h
 <need to doublecheck the installation code>
 
 Installation via module load:
-```
+```bash
 module load FastQC
 ```
 
 Installation on the cluster:
-```
+```bash
 wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip
 unzip fastqc_v0.12.1
 export PATH:$PATH/to/fastqc
@@ -25,7 +26,7 @@ fastqc --version
 
 Running FastQC:
 
-```
+```bash
 cd /path/to/reads
 fastqc *.fq.gz
 ```
@@ -33,7 +34,7 @@ fastqc *.fq.gz
 <details>
 <summary>FASTQC slurm job </summary>
 
-```
+```bash
 #!/bin/bash
 # Mass FastQC
 #SBATCH --job-name=Batch_FastQC
@@ -56,21 +57,21 @@ cd /projects/intro2gds/I2GDS2024/individual_folders/jaret/data/trimmedreads/trim
 <need to doublecheck the installation code>
   
 Installation via module load:
-```
+```bash
 module load Trimmomatic
 java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar
 ```
 
 Installation on cluster:
 
-```
+```bash
 wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
 unzip Trimmomatic-0.39.zip
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar 
 ```
 
 Trimming:
-```
+```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
  ....add the rest
 ```
@@ -78,7 +79,7 @@ java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
 <details>
 <summary>Trimmomatic slurm job </summary>
   
-```
+```bash
 #!/bin/bash
 #SBATCH --job-name=trimmomatic_trim
 #SBATCH --cpus-per-task=10              
@@ -157,7 +158,7 @@ echo "All files have been processed and saved in $trim_folder."
 <need to check installation instructions>
 
 Installation via module load:
-```
+```bash
 wget https://github.com/alexdobin/STAR/archive/2.7.11b.tar.gz
 tar -xzf 2.7.11b.tar.gz
 cd STAR-2.7.11b
@@ -210,7 +211,7 @@ exit;
 <details>
 <summary>STAR Read Alignment slurm job </summary>
   
-```
+```bash
 #!/bin/bash
 # STAR Read Mapping - D3
 #SBATCH --job-name=STAR-hybridreadmapping-Day3
@@ -258,7 +259,7 @@ exit;
 <need to check installation instructions>
 
 Installation via conda:
-```
+```bash
 module load Miniconda3
 conda create -n subread -c bioconda subread
 source activate subread
@@ -266,7 +267,7 @@ featureCounts
 ```
 
 Running Feature counts:
-```
+```bash
 featureCounts -p ....
 ```
 
@@ -303,7 +304,4 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 ```
 </details>
 
-
-
-(insert images/emojis and more detail later)
-
+## References
