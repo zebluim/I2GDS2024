@@ -1,4 +1,4 @@
-# RNA-Seq-Pipeline (Jaret & Lili)
+# RNA-Seq-Pipeline 💻⚙️(Jaret & Lili)
 
 ![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
 
@@ -17,6 +17,8 @@ This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies h
 Installation via module load:
 ```bash
 module load FastQC
+
+#UNTESTED
 ```
 
 Installation on the cluster:
@@ -25,14 +27,18 @@ wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zi
 unzip fastqc_v0.12.1
 export PATH:$PATH/to/fastqc
 source ~/.bashrc
-fastqc --version 
+fastqc --version
+
+#UNTESTED
 ```
 
 Running FastQC:
 
 ```bash
 cd /path/to/reads
-fastqc *.fq.gz
+fastqc *.fastq
+
+#UNTESTED
 ```
 
 ## Trimmomatic
@@ -43,6 +49,8 @@ Installation via module load:
 ```bash
 module load Trimmomatic
 java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar
+
+#UNTESTED
 ```
 
 Installation on cluster:
@@ -51,12 +59,19 @@ Installation on cluster:
 wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
 unzip Trimmomatic-0.39.zip
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar 
+
+#UNTESTED
 ```
 
 Trimming:
 ```bash
-java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
- ....add the rest
+java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
+-trimlog trimlog.txt \
+demo.fastq \
+demo.trim.fastq \
+ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 \
+
+#UNTESTED
 ```
 
 
@@ -72,6 +87,8 @@ tar -xzf 2.7.11b.tar.gz
 cd STAR-2.7.11b
 cd STAR/source
 make STAR
+
+#UNTESTED
 ```
 
 
@@ -85,11 +102,15 @@ module load Miniconda3
 conda create -n subread -c bioconda subread
 source activate subread
 featureCounts
+
+#UNTESTED
 ```
 
 Running Feature counts:
 ```bash
-featureCounts -p ....
+featureCounts -a <annotation file> -o <path/to/outputfile.txt> <bamfile>
+
+#UNTESTED
 ```
 
 
