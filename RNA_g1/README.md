@@ -1,4 +1,4 @@
-# RNA-Seq-Pipeline 💻⚙️(Jaret & Lili)
+# RNA-Seq-Pipeline (Jaret & Lili)
 
 ![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
 
@@ -7,18 +7,21 @@
 ## Introduction
 
 This page is a work in progress!
-This repo explains a basic pipeline for RNA-Seq analysis. This pipeline relies heavily on FASTQC, Trimmomatic, STAR, and Featurecounts. For installation instructions see below... (add more?)  
-!!To download files see RNA_G2!! 
+This repo explains a basic pipeline for RNA-Seq analysis. It was developed as part of curriculum for Virginia Tech's Intro to Genomic Data Science course. This pipeline runs in Linux and relies on FASTQC, Trimmomatic, STAR, and Featurecounts. This example pipeline uses single-end FastQ reads, but it could be altered for use with paired end data (see example slurm scripts).
+
+Contact: Jaret Arnold (amichael19@vt.edu) or Lili Zebluim (liliz@vt.edu)
+
+!!To download files see RNA_G2!! (or download demo.fastq from this repo)
 
 ## FastQC
-<Blurb about fastqc>
-<need to doublecheck the installation code>
+FastQC will be used to assess the quality of the raw reads and generate an html report detailing sequence quality, adapter contamination, GC content, etc.  
 
 Installation via module load:
 ```bash
 module load FastQC
+fastqc --version #testing if install worked
+#TESTED
 
-#UNTESTED
 ```
 
 Installation on the cluster:
@@ -27,7 +30,7 @@ wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zi
 unzip fastqc_v0.12.1
 export PATH:$PATH/to/fastqc
 source ~/.bashrc
-fastqc --version
+fastqc --version #testing if install worked
 
 #UNTESTED
 ```
@@ -35,14 +38,16 @@ fastqc --version
 Running FastQC:
 
 ```bash
-cd /path/to/reads
-fastqc *.fastq
+cd /path/to/reads #move to location where you downloaded reads
+fastqc demo.fastq -d . -o . #uses current dir for temp files (-d .) and outputs in current directory (-o .)
+#alternatively consider using the wildcard operator (*) for many files:
+#fastqc *fastq -d . -o . 
 
 #UNTESTED
 ```
 
 ## Trimmomatic
-<Blurb about trimmomatic>
+Trimmomatic is used to remove adapter sequence contamination and low quality reads. 
 <need to doublecheck the installation code>
   
 Installation via module load:
@@ -58,12 +63,14 @@ Installation on cluster:
 ```bash
 wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
 unzip Trimmomatic-0.39.zip
-java -jar Trimmomatic-0.39/trimmomatic-0.39.jar 
+java -jar /path/to/Trimmomatic-0.39/trimmomatic-0.39.jar 
 
 #UNTESTED
 ```
 
-Trimming:
+Note: adapter selection may vary depending on the method of sequencing and therefore may need to be changed depending upon your data. Simply change TruSeq3-SE to the applicable adapter file provided by trimmomatic. 
+
+Trimming single-end reads:
 ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
 -trimlog trimlog.txt \
@@ -74,10 +81,26 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:3
 #UNTESTED
 ```
 
+Trimming paired-end reads:
+```bash
+java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
+-trimlog trimlog.txt \
+sample_1.fastq sample_2.fastq \
+sample_1.trim.fastq sample_2.trim.fastq \
+ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 \
 
+#UNTESTED
+```
+
+After trimmming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
+
+```bash
+fastqc demo.trim.fastq -d . -o .
+
+```
 
 ## STAR
-<Blurb about STAR>
+STAR is the program used to index and align reads to a reference genome. It is always advisable to schedule STAR and other alignment processes on ARC as they can often require large memory and time requirements, particularly with more reads (see slurm examples).
 <need to check installation instructions>
 
 Installation via download:
@@ -91,6 +114,31 @@ make STAR
 #UNTESTED
 ```
 
+Genome indexing:
+```bash
+mkdir /path/to/genomeindex
+
+STAR --runThreadN 6 \
+--runMode genomeGenerate \
+--genomeDir /path/to/genomeindex \
+--genomeFastaFiles /path/to/genomicfasta \
+--sjdbGTFfile /path/to/genomeGTF
+
+#UNTESTED
+```
+
+Genome Read Mapping:
+```bash
+
+STAR --runThreadN 6 \
+--genomeDir /path/to/genomeindex \
+--readFilesIn /path/to/read.fq \
+--outSAMtype BAM SortedByCoordinate \
+
+#UNTESTED
+```
+
+
 
 ## FeatureCounts
 <Blurb about Featurecounts>
@@ -101,14 +149,14 @@ Installation via conda:
 module load Miniconda3
 conda create -n subread -c bioconda subread
 source activate subread
-featureCounts
+featureCounts #testing if install worked
 
 #UNTESTED
 ```
 
 Running Feature counts:
 ```bash
-featureCounts -a <annotation file> -o <path/to/outputfile.txt> <bamfile>
+featureCounts -a <annotation file> -o <path/to/outputfile.txt> <path/to/.bam>
 
 #UNTESTED
 ```
