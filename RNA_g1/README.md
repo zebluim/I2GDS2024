@@ -81,6 +81,9 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:3
 #UNTESTED
 ```
 
+Explanation of trimming parameters: 
+ILLUMINACLIP, LEADING, TRAILING, SLIDINGWINDOW, MINLEN
+
 Trimming paired-end reads:
 ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
