@@ -11,7 +11,7 @@ This repo explains a basic pipeline for RNA-Seq analysis. It was developed as pa
 
 Contact: Jaret Arnold (amichael19@vt.edu) or Lili Zebluim (liliz@vt.edu)
 
-!!To download files see RNA_G2!! (or download demo.fastq from this repo)
+!!To download example files see RNA_G2!!
 
 ## FastQC
 FastQC will be used to assess the quality of the raw reads and generate an html report detailing sequence quality, adapter contamination, GC content, etc.  
@@ -41,7 +41,7 @@ Running FastQC:
 cd /path/to/reads #move to location where you downloaded reads
 fastqc demo.fastq -d . -o . #uses current dir for temp files (-d .) and outputs in current directory (-o .)
 #alternatively consider using the wildcard operator (*) for many files:
-#fastqc *fastq -d . -o . 
+#fastqc *.fastq -d . -o . 
 
 #UNTESTED
 ```
