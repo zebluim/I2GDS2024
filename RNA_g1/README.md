@@ -75,8 +75,6 @@ java -jar /path/to/Trimmomatic-0.39/trimmomatic-0.39.jar
 #UNTESTED
 ```
 
-Note: adapter selection may vary depending on the method of sequencing and therefore may need to be changed depending upon your data. Simply change TruSeq3-SE to the applicable adapter file provided by trimmomatic. 
-
 Trimming single-end reads:
 ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
@@ -87,6 +85,9 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:3
 
 #UNTESTED
 ```
+
+> [!NOTE]
+> Adapter selection may vary depending on the method of sequencing and therefore may need to be changed depending upon your data. Simply change TruSeq3-SE to the applicable adapter file provided by trimmomatic. 
 
 Explanation of trimming parameters: 
 ILLUMINACLIP, LEADING, TRAILING, SLIDINGWINDOW, MINLEN
@@ -136,6 +137,8 @@ STAR --runThreadN 6 \
 
 #UNTESTED
 ```
+> [!WARNING]
+> Both STAR genome indexing and read mapping can be computationally intensive and require time. If working on ARC these should be submitted using slurm to efficiently schedule them. See the [example slurm scripts](#slurm-job-examples).
 
 Genome Read Mapping:
 ```bash
