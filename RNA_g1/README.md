@@ -103,7 +103,7 @@ fastqc demo.trim.fastq -d . -o .
 ```
 
 ## STAR
-STAR is the program used to index and align reads to a reference genome. It is always advisable to schedule STAR and other alignment processes on ARC as they can often require large memory and time requirements, particularly with more reads (see slurm examples).
+STAR is the program used to index and align reads to a reference genome. It is always advisable to schedule STAR and other alignment processes on ARC as they can often require large memory and time requirements, particularly with more reads (see [example slurm scripts](#slurm-job-examples)).
 <need to check installation instructions>
 
 Installation via download:
