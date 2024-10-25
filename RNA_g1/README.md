@@ -7,7 +7,7 @@
 ## Introduction
 
 This page is a work in progress!
-This repo explains a basic pipeline for RNA-Seq analysis. It was developed as part of curriculum for Virginia Tech's Intro to Genomic Data Science course. This pipeline runs in Linux and relies on FASTQC, Trimmomatic, STAR, and Featurecounts. This example pipeline uses single-end FastQ reads, but it could be altered for use with paired end data (see example slurm scripts).
+This repo explains a basic pipeline for RNA-Seq analysis. It was developed as part of curriculum for Virginia Tech's Intro to Genomic Data Science course. This pipeline runs in Linux and relies on FASTQC, Trimmomatic, STAR, and Featurecounts. This example pipeline uses single-end FastQ reads, but it could be altered for use with paired end data (see [example slurm scripts](#slurm-job-examples)).
 
 Contact: Jaret Arnold (amichael19@vt.edu) or Lili Zebluim (liliz@vt.edu)
 
@@ -392,4 +392,4 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 
 ## References
 
-[Back to top](#top)
+<add citations and any other refs here>
