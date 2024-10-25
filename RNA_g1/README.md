@@ -11,6 +11,13 @@ This repo explains a basic pipeline for RNA-Seq analysis. It was developed as pa
 
 Contact: Jaret Arnold (amichael19@vt.edu) or Lili Zebluim (liliz@vt.edu)
 
+To do (before finalized):
+- [ ] Upload new pipeline image 
+- [ ] Test All Code Blocks
+- [ ] Add info on downloading the file
+- [ ] Read through/edit blurbs and code snippets
+- [ ] Add References 
+
 !!To download example files see RNA_G2!!
 
 ## FastQC
