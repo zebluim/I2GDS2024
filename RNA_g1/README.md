@@ -10,7 +10,7 @@ This repo explains a basic pipeline for RNA-Seq analysis. It was developed as pa
 Contact: Jaret Arnold (amichael19@vt.edu) or Lili Zebluim (liliz@vt.edu)
 
 To do (before finalized):
-- [x] Upload new pipeline image 
+- [ ] Upload new pipeline image 
 - [ ] Test All Code Blocks
 - [ ] Add info on downloading the file
 - [ ] Read through/edit blurbs and code snippets
@@ -27,7 +27,7 @@ wget 'http://ftp.ensembl.org/pub/release-106/gtf/homo_sapiens/Homo_sapiens.GRCh3
 
 
 ## FastQC
-FastQC will be used to assess the quality of the raw reads and generate an html report detailing sequence quality, adapter contamination, GC content, etc.  
+FastQC will be used to assess the quality of the raw reads and generate an html report detailing sequence quality, adapter contamination, GC content, etc. If FastQC is available on your computing environment, installation may be as easy as invoking module load. If not, try installing via the download. 
 
 #### Installation via module load:
 ```bash
@@ -67,7 +67,7 @@ fastqc demo.fastq -o .
 ```
 
 ## Trimmomatic
-Trimmomatic is used to remove adapter sequence contamination and low quality reads. Use your fastqc report to inform you how to best trim your reads. In the case of the demo file, trimming bases at the end will improve the quality of our reads so we will use the TRAILING option.
+Trimmomatic is used to remove adapter sequence contamination and low quality reads. Use your fastqc report to inform you how to best trim your reads. In the case of the demo file, trimming bases at the end will improve the quality of our reads so we will use the TRAILING option. If trimmomatic is available on your computing environment, installation may be as easy as invoking module load. If not, try installing via the download. 
 <need to doublecheck the installation code>
   
 #### Installation via module load:
