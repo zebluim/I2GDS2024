@@ -96,7 +96,11 @@ java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
 -trimlog trimlog.txt \
 demo.fastq \
 demo.trim.fastq \
-ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
+ILLUMINACLIP:TruSeq3-SE:2:30:10 \
+LEADING:3 \ 
+TRAILING:3 \
+SLIDINGWINDOW:4:20 \ 
+MINLEN:36
 
 #UNTESTED
 ```
@@ -114,16 +118,16 @@ MINLEN - drops the read if it is below a specified length
 
 <details>
 <summary> Trimming paired-end reads: </summary>
-Trimming paired-end reads:
-```bash
+
+  ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
 -trimlog trimlog.txt \
 sample_1.fastq sample_2.fastq \
 sample_1.trim.fastq sample_2.trim.fastq \
 ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
-
 #UNTESTED
-</details>```
+```
+</details>
 
 After trimmming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
 
