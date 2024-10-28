@@ -408,7 +408,7 @@ If these errors arise some helpfull samtools comands are
 
 Make sam to bam
 ```
-samtools view -S -b <path_to_input_sam> > <path_to_output_bam>
+samtools view -bS <path_to_input_sam> > <path_to_output_bam>
 ```
 Sort a bam file
 ```
