@@ -1,6 +1,6 @@
 # RNA-Seq-Pipeline (Jaret & Lili)
 
-![RNAseq workflow ](https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f)
+<img src="https://github.com/user-attachments/assets/4e5f4768-09be-4302-809c-eff8fbda234f" width=30% height=30%>
 
 <a name="top"></a>
 
