@@ -123,15 +123,12 @@ sample_1.trim.fastq sample_2.trim.fastq \
 ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
 
 #UNTESTED
-```
-</details>
-
+</details>```
 
 After trimmming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
 
 ```bash
 fastqc demo.trim.fastq -o .
-
 ```
 
 ## STAR
