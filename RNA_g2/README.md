@@ -16,6 +16,7 @@ This project analyzes RNA-seq data. It includes:
 
 <details>
 <summary> Hard requirements </summary>
+
     
 It is nesssisary to install these programs with conda in a single environment prior to beining to procced
 To install the minimum programs needed in a conda enviroment run
@@ -33,6 +34,7 @@ conda install -c bioconda subreads -y
 
 <details>
 <summary> Soft requirements </summary>
+
     
 The only constant is change, if the programs used have chaned change your file types with these tools   
 If you wish to work with the data in any other formats consider installing gffread and samtools
