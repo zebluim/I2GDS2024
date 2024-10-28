@@ -18,7 +18,7 @@ This project analyzes RNA-seq data. It includes:
 <summary> Hard requirements </summary>
 
     
-It is necessary to install these programs with conda in a single environment before beginning to proceed
+It is necessary to install these programs with conda in a single environment before beginning.to proceed
 To install the minimum programs needed in a conda environment run
     
 ```
