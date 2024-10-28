@@ -39,7 +39,9 @@ fastqc --version #testing if install worked
 
 ```
 
-Installation on the cluster:
+<details>
+<summary> Installation via download: </summary>
+  
 ```bash
 wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip
 unzip fastqc_v0.12.1
@@ -49,6 +51,7 @@ fastqc --version #testing if install worked
 
 #UNTESTED
 ```
+</details>
 
 Running FastQC:
 
@@ -73,7 +76,8 @@ java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar
 #UNTESTED
 ```
 
-Installation on cluster:
+<details>
+<summary> Installation via download: </summary>
 
 ```bash
 wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
@@ -82,6 +86,8 @@ java -jar /path/to/Trimmomatic-0.39/trimmomatic-0.39.jar
 
 #UNTESTED
 ```
+
+</details>
 
 Trimming single-end reads:
 ```bash
