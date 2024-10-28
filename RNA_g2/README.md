@@ -1,5 +1,3 @@
-#RNAseq Pipeline (Matt and Abigayle)
-
 # Using this guide
 Each step in the RNAseq pipeline RNA2seq is laid out here step by step
 
