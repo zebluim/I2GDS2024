@@ -23,8 +23,8 @@ To do (before finalized):
 To download the files used in this test workflow, run the following commands in your linux environment. 
 ```bash
 wget 'https://drive.usercontent.google.com/download?id=1DGHjbhcRy_zTm6H9C_AUpkzBML-JhtA3&export=download&authuser=1&confirm=t' -O demo.fastq
-wget https://genome-idx.s3.amazonaws.com/hisat/grch38_genome.tar.gz
-wget http://ftp.ensembl.org/pub/release-106/gtf/homo_sapiens/Homo_sapiens.GRCh38.106.gtf.gz
+wget 'https://genome-idx.s3.amazonaws.com/hisat/grch38_genome.tar.gz'
+wget 'http://ftp.ensembl.org/pub/release-106/gtf/homo_sapiens/Homo_sapiens.GRCh38.106.gtf.gz'
 ```
 
 
