@@ -1,6 +1,7 @@
 # Using this guide
 Each step in the RNAseq pipline RNA2seq is layed out here step by step
-Please read each step thurogly before testing any of the code as there is sample code included in the explanations, as well as exact coppies of the code that can be used to duplicate this project at tinkercliffs1.arc.vt.edu
+
+Please read each step in its enterity before testing any of the code as there is sample code included in the explanations, as well as exact copies of the code that can be used to duplicate this project at tinkercliffs1.arc.vt.edu
 
 # RNA2-seq Pipeline
 
@@ -10,10 +11,15 @@ This project analyzes RNA-seq data. It includes:
 - Preprocessing with Trimmomatic
 - Alignment with HISAT2
 - Quantification with featureCounts (installed as subreads)
+  
 # Set up RNA2-seq environment
 
-It is recomended to install these programs with conda in a single environment prior to beining to procced
+<details>
+<summary> Hard requirements </summary>
+    
+It is nesssisary to install these programs with conda in a single environment prior to beining to procced
 To install the minimum programs needed in a conda enviroment run
+    
 ```
 conda create -N RNA2-seq
 conda activate RNA2-seq
@@ -22,15 +28,29 @@ conda install -c bioconda trimmomatic -y
 conda install -c bioconda hisat2 -y
 conda install -c bioconda subreads -y
 ```
-If you wish to work with the data in any other formats consider installing gffread and samtools as well
+    
+</details>
 
+<details>
+<summary> Soft requirements </summary>
+    
+The only constant is change, if the programs used have chaned change your file types with these tools   
+If you wish to work with the data in any other formats consider installing gffread and samtools
 ```
 conda activate RNA2-seq
 conda install -c bioconda gffread -y
 conda install -c bioconda samtools -y
 ```
 
+</details>
+
 # SRA-tools
+
+</details>
+
+<details>
+<summary> Set up for SRA tools </summary>
+    
 This tool alows for the colection of RNA-seq data stored as uniquily idenfied SRR files to be downloaded as fastq files 
     To set up you will need a .txt file with the SRR numbers for data
     open a text editor
@@ -47,7 +67,11 @@ SRR11749403
 SRR11749404
 ```
 save by typing Ctrl x, y, enter
+</details>
 
+<details>
+<summary> SRA tools overview </summary>
+    
 too run sra-tools be sure to be in the conda environment you just created and run 
 ```
 # makes output directory so you can save in a new directory
@@ -74,6 +98,12 @@ done < "$SRR_FILE"
 echo "Download complete." 
 # fastq-dump has now made the srr files with the ID you specifed into fastq files you can use in later steps
 ```
+
+</details>
+
+<details>
+<summary> SRA tools a an sbatch </summary>
+    
 When downloading many large files it is recomended to submit as a slurm job so that this can run in the bacground
 ```
 nano srrdw.sh
@@ -125,7 +155,12 @@ run with
 ```
 sbatch srrdw.sh
 ```
+</details>
+
 # Trimmomatic
+
+<details>
+<summary> Trimmomatic overview </summary>
 
 This tool is used to remove under sized reads as well as remove primers or tags from RNAseq reads
 
@@ -159,10 +194,15 @@ So the comand to trim the first srr file we downloaded in fastq format is
 ```trimmomatic SE SRR11749400_1.fastq output_trimmed.fastq ILLUMINACLIP:adapters.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:36```
 with any ajustments made to the quality as needed
 
+</details>
+
+<details>
+<summary> Trimmomatic as an sbatch </summary>
+
 or to submit the entier process as a slurm job 
 ``` nano trimmer.sh```
 
-then copy paset
+then copy paste
 
 ```
 #!/bin/bash
@@ -194,7 +234,13 @@ save by typing Ctrl x, y, enter
 run
 
 ``` sbatch trimmer.sh```
+
+</details>
+
 # HISAT2
+
+<details>
+<summary> Setup HISAT2 </summary>
 
 before HISAT2 can compare the RNAseq data to a referance geneome you need to download a referance genemoe, if your goal is replicate this project on tinkercliffs1.arc.vt.edu follow these steps exactly in a directory where you want this stored
 
@@ -208,7 +254,7 @@ chmod +x datasets
 ```
 download the mouse geneome used for this project
 ```
-./datasets download genome accession GCF_000001635.27 --include gff3,rna,cds,protein,genome,seq-report
+./datasets download genome accession GCF_000001635.27 --include genome,gtf
 ```
 Unzip the data 
 ```
@@ -219,7 +265,12 @@ and verify the integrity
 md5sum -c md5sum.txt
 ```
 
-if all check pass you now have the genomic data you need in this directory/ncbi_dataset/data/GCF_000001635.27/GCF_000001635.27_GRCm39_genomic.fna and this directory/ncbi_dataset/data/GCF_000001635.27/genomic.gff
+if all check pass you now have the genomic data you need in this directory/ncbi_dataset/data/GCF_000001635.27/GCF_000001635.27_GRCm39_genomic.fna and this directory/ncbi_dataset/data/GCF_000001635.27/genomic.gtf
+
+</details>
+
+<details>
+<summary> HISAT2 indexing overview  </summary>
 
 Now you can begin to build the referance files the HISA2 will use, I recomend jsut keeping these here with the genome but you can set paths to folders as needed
 
@@ -229,6 +280,11 @@ hisat2-build -p 8 Referance.fna /path/to/output
 ```
 
 You will need to set an output name for the index files HISAT2 makes, there will be 8 of them named "name.1-8.ht2"
+
+</details>
+
+<details>   
+<summary> HISAT2 indexing as an sbatch </summary>
 
 To run as a slurm job
 
@@ -257,11 +313,10 @@ copy and paste
 
 
 
-# Load environment and activate samtools
 
 source ~/.bashrc
 
-conda activate samtools
+conda activate RNA2-seq
 
 hisat2-build -p 8 GCF_000001635.27_GRCm39_genomic.fna geneIndex
 ```
@@ -275,11 +330,21 @@ this will produce 8 files geneIndex.1-8.ht2
 
 Once the indexing process has finished HISAT2 can now be used to produce SAM files from the fastq files you produced in the trimmomatic step (or any fastq files if you are skipping steps but this is not recomended if you are trying to reporduce this project)
 
+</details>
+
+<details>
+<summary> HISAT make SAM overview </summary>
+
 to make same files wiht HISAT2 the general format is 
 ```
 hisat2 -p <threads> -x <path_to_genome_index> -U <path_to_input_fastq> -S <path_to_output_sam>
 ```
 With the index you just made, and the fastq you made in the trimmomatic step
+
+</details>
+
+<details>
+<summary> HISAT2 make SAM as an sbatch </summary>
 
 If these are all in the same directory then you can run this exact set of code to submit a slurm job on tinkercliffs1.arc.vt.edu if not you will need to set specific file paths for your jobs
 I do itterate this several times but by the time you are to this step it may be a good idea to make sure you have a good file structure set up as there are a few moving parts going on with the genome fna, the gff, and two versions of each fastq.
@@ -323,13 +388,17 @@ run
 sbatch samMaker.sh
 ```
 You now have a SAM file per fastq file you input (5 of them labled 0-4 if you are replicating this project)
+
+</details>
+
 # Feature count
 
 
 <details>
 <summary>🔧 Troubleshooting</summary>
-Feature counts will make use of the SAM files and the genomic.gff to count the features of the RNAseq data that align with the comparison genome
-At this point if you have been replicating this project exactly tyou SAM files and a gff file, I will proced to show how to use these in featuer counts but if you get errors based on file type this is why you may have installed gffread and samtools
+Feature counts will make use of the SAM files and the genomic.gtf to count the features of the RNAseq data that align with the comparison genome 
+    
+At this point if you have been replicating this project exactly tyou SAM files and a gtf file, I will proced to show how to use these in Feature counts but if you get errors based on file type this is why you may have installed gffread and samtools
 
 If these errors arise some helpfull samtools comands are 
 
@@ -352,9 +421,69 @@ samtools view -b -@ <threads> -o <path_to_output_bam> <path_to_input_bam>
 
 Usefull gffreads comands
 
+
 GFF to GTF
 
 ```
 gffread <path_to_input_gff> -T -o <path_to_output_gtf>
+```
+
+GTF to GFF
+
+```
+gffread <path_to_input_gtf>  -o <path_to_output_gff>
+```
+</details>
+
+<details>
+<summary> Feature counts overview </summary>
+To begin working with featureCounts recall it was installed as part of the subreads packadge so should be good to go
+
+the comand you will need is the base of counts and structured 
+
+```
+featureCounts -a /path/to/referance.gtf -o /path/to/output.txt /path/to/SAMfilefrompreviousstep.sam
+```
+
+</details>
+
+<details>
+<summary> Feature counts as an sbatch </summary>
+    
+To run a slurm job at tinkercliffs1.arc.vt.edu the following can be used, however be aware this is the final step and you are combining all of the moving parts from differant sorces so **check your paths** a copy and paste of this file assumes you unzipped the ncbi data in the same place as you stored the sam files made from the trimmed data, this may not be true or even ideal for your organisational system so check everything before submiting
+
+```
+nano counter.sh
+```
+
+copy and paste
+
+```
+
+#!/bin/bash
+#SBATCH -t 144:00:00
+#SBATCH --nodes=2
+#SBATCH --tasks-per-node=8
+#SBATCH --job-name=counter
+#SBATCH --partition=normal_q
+#SBATCH --account=introtogds
+#SBATCH --mail-user=email
+#SBATCH --mail-type=ALL
+
+source ~/.bashrc
+conda activate RNA1-seq
+
+featureCounts -a ncbi_dataset/data/GCF_000001635.27/genomic.gtf -o 0counts.txt 0.sam
+featureCounts -a ncbi_dataset/data/GCF_000001635.27/genomic.gtf -o 1counts.txt 1.sam
+featureCounts -a ncbi_dataset/data/GCF_000001635.27/genomic.gtf -o 2counts.txt 2.sam
+featureCounts -a ncbi_dataset/data/GCF_000001635.27/genomic.gtf -o 3counts.txt 3.sam
+featureCounts -a ncbi_dataset/data/GCF_000001635.27/genomic.gtf -o 4counts.txt 4.sam
+```
+save by typing Ctrl x, y, enter
+
+run 
+
+```
+sbatch counter.sh
 ```
 </details>
