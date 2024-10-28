@@ -17,6 +17,7 @@ To do (before finalized):
 - [ ] Add References 
 
 ## Downloading Test files
+CHANGE THIS TO MY EXAMPLE FILES
 To download the files used in this test workflow, run the following commands in your linux environment. 
 ```bash
 wget 'https://drive.usercontent.google.com/download?id=1DGHjbhcRy_zTm6H9C_AUpkzBML-JhtA3&export=download&authuser=1&confirm=t' -O demo.fastq
@@ -436,5 +437,12 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 </details>
 
 ## References
+
+https://subread.sourceforge.net/featureCounts.html
+https://github.com/alexdobin/STAR
+https://github.com/timflutre/trimmomatic
+http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf
+https://github.com/s-andrews/FastQC
+https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
 
 <add citations and any other refs here>
