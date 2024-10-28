@@ -13,7 +13,7 @@ This repo explains a basic pipeline for RNA-Seq analysis. It was developed as pa
 Contact: Jaret Arnold (amichael19@vt.edu) or Lili Zebluim (liliz@vt.edu)
 
 To do (before finalized):
-- [ ] Upload new pipeline image 
+- [x] Upload new pipeline image 
 - [ ] Test All Code Blocks
 - [ ] Add info on downloading the file
 - [ ] Read through/edit blurbs and code snippets
@@ -32,7 +32,7 @@ wget 'http://ftp.ensembl.org/pub/release-106/gtf/homo_sapiens/Homo_sapiens.GRCh3
 ## FastQC
 FastQC will be used to assess the quality of the raw reads and generate an html report detailing sequence quality, adapter contamination, GC content, etc.  
 
-Installation via module load:
+#### Installation via module load:
 ```bash
 module load FastQC
 fastqc --version #testing if install worked
@@ -41,7 +41,10 @@ fastqc --version #testing if install worked
 ```
 
 <details>
-<summary> Installation via download: </summary>
+<summary> 
+  
+#### Installation via download:
+</summary>
   
 ```bash
 wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.12.1.zip
@@ -54,7 +57,7 @@ fastqc --version #testing if install worked
 ```
 </details>
 
-Running FastQC:
+#### Running FastQC:
 
 ```bash
 cd /path/to/reads    #move to location where you downloaded reads
@@ -70,7 +73,7 @@ fastqc demo.fastq -o .
 Trimmomatic is used to remove adapter sequence contamination and low quality reads. Use your fastqc report to inform you how to best trim your reads. In the case of the demo file, trimming bases at the end will improve the quality of our reads so we will use the TRAILING option.
 <need to doublecheck the installation code>
   
-Installation via module load:
+#### Installation via module load:
 ```bash
 module load Trimmomatic
 java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar  #test if installation worked
@@ -79,7 +82,10 @@ java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar  #test if installation worked
 ```
 
 <details>
-<summary> Installation via download: </summary>
+<summary>
+  
+#### Installation via download: 
+</summary>
 
 ```bash
 wget https://github.com/usadellab/Trimmomatic/files/5854859/Trimmomatic-0.39.zip
@@ -91,7 +97,7 @@ java -jar /path/to/Trimmomatic-0.39/trimmomatic-0.39.jar
 
 </details>
 
-Trimming single-end reads:
+#### Trimming single-end reads:
 ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
 -trimlog trimlog.txt \
@@ -106,16 +112,23 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
 > Adapter selection may vary depending on the method of sequencing and therefore may need to be changed depending upon your data. Simply change TruSeq3-SE to the applicable adapter file provided by trimmomatic. 
 
 Explanation of common trimming parameters: 
-ILLUMINACLIP - cuts adapters and illumina-specific reads, 
-LEADING - cuts bases off from the start of a read if below threshold, 
-TRAILING - cuts bases off from the end of the read if below threshold, 
-SLIDINGWINDOW - performs sliding window trimming approach (clips if window below threshold), 
-MINLEN - drops the read if it is below a specified length 
+
+**ILLUMINACLIP** - cuts adapters and illumina-specific reads 
+
+**LEADING** - cuts bases off from the start of a read if below threshold
+
+**TRAILING** - cuts bases off from the end of the read if below threshold 
+
+**MINLEN** - drops the read if it is below a specified length 
 
 
 <details>
-<summary> Trimming paired-end reads: </summary>
-Trimming paired-end reads:
+  
+<summary> 
+
+  #### Trimming paired-end reads: 
+</summary>
+
 ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
 -trimlog trimlog.txt \
@@ -125,10 +138,11 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
 
 #UNTESTED
 ```
+
 </details>
 
 
-After trimmming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
+After trimming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
 
 ```bash
 fastqc demo.trim.fastq -o .
@@ -139,7 +153,7 @@ fastqc demo.trim.fastq -o .
 STAR is the program used to index and align reads to a reference genome. It is always advisable to schedule STAR and other alignment processes on ARC as they can often require large memory and time requirements, particularly with more reads (see [example slurm scripts](#slurm-job-examples)).
 <need to check installation instructions>
 
-Installation via download:
+#### Installation via download:
 ```bash
 wget https://github.com/alexdobin/STAR/archive/2.7.11b.tar.gz
 tar -xzf 2.7.11b.tar.gz
@@ -150,7 +164,7 @@ make STAR
 #UNTESTED
 ```
 
-Genome indexing:
+#### Genome indexing:
 ```bash
 mkdir /path/to/genomeindex
 
@@ -165,7 +179,7 @@ STAR --runThreadN 6 \
 > [!WARNING]
 > Both STAR genome indexing and read mapping can be computationally intensive and require time. If working on ARC these should be submitted using slurm to efficiently schedule them. See the [example slurm scripts](#slurm-job-examples).
 
-Genome Read Mapping:
+#### Genome Read Mapping:
 ```bash
 
 STAR --runThreadN 6 \
@@ -182,7 +196,7 @@ STAR --runThreadN 6 \
 <Blurb about Featurecounts>
 <need to check installation instructions>
 
-Installation via conda:
+#### Installation via conda:
 ```bash
 module load Miniconda3
 conda create -n subread -c bioconda subread
@@ -192,7 +206,7 @@ featureCounts #testing if install worked
 #UNTESTED
 ```
 
-Running Feature counts:
+#### Running Feature counts:
 ```bash
 featureCounts -a <annotation file> -o <path/to/outputfile.txt> <path/to/.bam>
 
