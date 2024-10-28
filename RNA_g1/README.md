@@ -56,24 +56,25 @@ fastqc --version #testing if install worked
 Running FastQC:
 
 ```bash
-cd /path/to/reads #move to location where you downloaded reads
-fastqc demo.fastq -o . #outputs in current directory (-o .)
+cd /path/to/reads    #move to location where you downloaded reads
+fastqc demo.fastq -o .
+#outputs in current directory (-o .)
 #alternatively consider using the wildcard operator (*) for many files:
 #fastqc *.fastq -o . 
 
-#UNTESTED
+#TESTED
 ```
 
 ## Trimmomatic
-Trimmomatic is used to remove adapter sequence contamination and low quality reads. 
+Trimmomatic is used to remove adapter sequence contamination and low quality reads. Use your fastqc report to inform you how to best trim your reads. In the case of the demo file, trimming bases at the end will improve the quality of our reads so we will use the TRAILING option.
 <need to doublecheck the installation code>
   
 Installation via module load:
 ```bash
 module load Trimmomatic
-java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar
+java -jar $EBROOTTRIMMOMATIC/trimmomatic-0.39.jar  #test if installation worked
 
-#UNTESTED
+#TESTED
 ```
 
 <details>
@@ -95,7 +96,7 @@ java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
 -trimlog trimlog.txt \
 demo.fastq \
 demo.trim.fastq \
-ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 \
+ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
 
 #UNTESTED
 ```
@@ -103,19 +104,28 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:3
 > [!NOTE]
 > Adapter selection may vary depending on the method of sequencing and therefore may need to be changed depending upon your data. Simply change TruSeq3-SE to the applicable adapter file provided by trimmomatic. 
 
-Explanation of trimming parameters: 
-ILLUMINACLIP, LEADING, TRAILING, SLIDINGWINDOW, MINLEN
+Explanation of common trimming parameters: 
+ILLUMINACLIP - cuts adapters and illumina-specific reads, 
+LEADING - cuts bases off from the start of a read if below threshold, 
+TRAILING - cuts bases off from the end of the read if below threshold, 
+SLIDINGWINDOW - performs sliding window trimming approach (clips if window below threshold), 
+MINLEN - drops the read if it is below a specified length 
 
+
+<details>
+<summary> Trimming paired-end reads: </summary>
 Trimming paired-end reads:
 ```bash
 java -jar Trimmomatic-0.39/trimmomatic-0.39.jar PE \
 -trimlog trimlog.txt \
 sample_1.fastq sample_2.fastq \
 sample_1.trim.fastq sample_2.trim.fastq \
-ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36 \
+ILLUMINACLIP:TruSeq3-SE:2:30:10 TRAILING:10 \
 
 #UNTESTED
 ```
+</details>
+
 
 After trimmming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
 
