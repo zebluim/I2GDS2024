@@ -109,12 +109,8 @@ MINLEN:36
 > Adapter selection may vary depending on the method of sequencing and therefore may need to be changed depending upon your data. Simply change TruSeq3-SE to the applicable adapter file provided by trimmomatic. 
 
 Explanation of common trimming parameters: 
-ILLUMINACLIP - cuts adapters and illumina-specific reads, 
-LEADING - cuts bases off from the start of a read if below threshold, 
-TRAILING - cuts bases off from the end of the read if below threshold, 
-SLIDINGWINDOW - performs sliding window trimming approach (clips if window below threshold), 
-MINLEN - drops the read if it is below a specified length 
 
+<img src="https://github.com/user-attachments/assets/013ce5ba-483c-4e31-aede-cf344c9a3eb9" width=60% height=60%>
 
 <details>
 <summary> Trimming paired-end reads: </summary>
