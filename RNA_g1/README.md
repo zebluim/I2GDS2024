@@ -97,9 +97,9 @@ java -jar Trimmomatic-0.39/trimmomatic-0.39.jar SE \
 demo.fastq \
 demo.trim.fastq \
 ILLUMINACLIP:TruSeq3-SE:2:30:10 \
-LEADING:3 \ 
+LEADING:3 \
 TRAILING:3 \
-SLIDINGWINDOW:4:20 \ 
+SLIDINGWINDOW:4:20 \
 MINLEN:36
 
 #UNTESTED
