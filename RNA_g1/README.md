@@ -16,7 +16,6 @@ To do (before finalized):
 - [ ] Read through/edit blurbs and code snippets
 - [ ] Add References 
 
-!!To download example files see RNA_G2!!
 ## Downloading Test files
 To download the files used in this test workflow, run the following commands in your linux environment. 
 ```bash
