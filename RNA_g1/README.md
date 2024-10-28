@@ -171,8 +171,11 @@ STAR --runThreadN 6 \
 
 #UNTESTED
 ```
-
-
+ 
+<details>
+<summary> Output file descriptions </summary>
+<img src=https://github.com/user-attachments/assets/f2f91c6d-dc1a-470e-9087-fa28a96b18db width=75% height=75%>
+</details>
 
 ## FeatureCounts
 <Blurb about Featurecounts>
@@ -422,5 +425,20 @@ featureCounts -a $ANNO_DIR -o $OUTPUT_DIR \
 </details>
 
 ## References
+Data Download and workflow
+https://www.youtube.com/watch?v=lG11JjovJHE
 
-<add citations and any other refs here>
+Installing FastQC
+https://www.youtube.com/watch?v=5nth7o_-f0Q 
+
+Installing Trimmomatic
+https://www.youtube.com/watch?v=sG6b1aGEdCQ
+
+Installing STAR
+https://www.youtube.com/watch?v=RhEinNds1uc&t=0s
+
+Making a Genomic Index in STAR
+https://www.youtube.com/watch?v=Ju6PtQD-H34&t=320s
+
+Installing Feature Counts 
+https://www.youtube.com/watch?v=2VhNCYe8nQw
