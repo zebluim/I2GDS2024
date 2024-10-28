@@ -57,9 +57,9 @@ Running FastQC:
 
 ```bash
 cd /path/to/reads #move to location where you downloaded reads
-fastqc demo.fastq -d . -o . #uses current dir for temp files (-d .) and outputs in current directory (-o .)
+fastqc demo.fastq -o . #outputs in current directory (-o .)
 #alternatively consider using the wildcard operator (*) for many files:
-#fastqc *.fastq -d . -o . 
+#fastqc *.fastq -o . 
 
 #UNTESTED
 ```
@@ -120,7 +120,7 @@ ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:3
 After trimmming, it is advisable to generate a second FastQC report to assess the success of trimming. For example:
 
 ```bash
-fastqc demo.trim.fastq -d . -o .
+fastqc demo.trim.fastq -o .
 
 ```
 
