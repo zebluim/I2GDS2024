@@ -110,7 +110,7 @@ MINLEN:36
 
 Explanation of common trimming parameters: 
 
-<img src="https://github.com/user-attachments/assets/013ce5ba-483c-4e31-aede-cf344c9a3eb9" width=60% height=60%>
+<img src=https://github.com/user-attachments/assets/073bf8e3-d15f-45e6-ad23-69312e4e77ef width=60% height=60%>
 
 <details>
 <summary> Trimming paired-end reads: </summary>
